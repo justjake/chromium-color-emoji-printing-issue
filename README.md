@@ -4,7 +4,8 @@ This repo demonstrates a pathological case for Chrome's printing functionality.
 
 ```
 docker build . --tag chromium-color-emoji-printing-issue:0
-docker run --rm -it -v out:/out chromium-color-emoji-printing-issue:0 node /app/example.js
+
+docker run --rm -it -v "$(pwd)"/out:/out chromium-color-emoji-printing-issue:0 node /app/example.js
 ```
 
 This should create ./out/out.pdf, an extremely large PDF file.

@@ -13,7 +13,8 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 # Install Noto Color Emoji font so our Chromium can render color emoji like a typical end-user machine.
-RUN curl --fail -s -S https://s3-us-west-2.amazonaws.com/notion-sources/fonts-noto-color-emoji_0~20180810-1_all.deb \
+# This Debian package was originally downloaded from
+RUN curl --fail -s -S https://cdn-aws.deb.debian.org/debian/pool/main/f/fonts-noto-color-emoji/fonts-noto-color-emoji_0~20180810-1_all.deb \
       -o /tmp/fonts-noto-color-emoji.deb && \
       dpkg -i /tmp/fonts-noto-color-emoji.deb && \
       rm /tmp/fonts-noto-color-emoji.deb

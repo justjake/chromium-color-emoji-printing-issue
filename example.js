@@ -18,6 +18,7 @@ const htmlContent = `
 🐶 🐱 🐭 🐹 🐰 🦊 🦝 🐻 🐼 🦘 🦡 🐨 🐯 🦁 🐮 🐷 🐽 🐸 🐵 🙈 🙉 🙊 🐒 🐔 🐧 🐦 🐤 🐣 🐥 🦆 🦢 🦅 🦉 🦚 🦜 🦇 🐺 🐗 🐴 🦄 🐝 🐛 🦋 🐌 🐚 🐞 🐜 🦗 🕷 🕸 🦂 🦟 🦠 🐢 🐍 🦎 🦖 🦕 🐙 🦑 🦐 🦀 🐡 🐠 🐟 🐬 🐳 🐋 🦈 🐊 🐅 🐆 🦓 🦍 🐘 🦏 🦛 🐪 🐫 🦙 🦒 🐃 🐂 🐄 🐎 🐖 🐏 🐑 🐐 🦌 🐕 🐩 🐈 🐓 🦃 🕊 🐇 🐁 🐀 🐿 🦔 🐾 🐉 🐲 🌵 🎄 🌲 🌳 🌴 🌱 🌿 ☘️ 🍀 🎍 🎋 🍃 🍂 🍁 🍄 🌾 💐 🌷 🌹 🥀 🌺 🌸 🌼 🌻 🌞 🌝 🌛 🌜 🌚 🌕 🌖 🌗 🌘 🌑 🌒 🌓 🌔 🌙 🌎 🌍 🌏 💫 ⭐️ 🌟 ✨ ⚡️ ☄️ 💥 🔥 🌪 🌈 ☀️ 🌤 ⛅️ 🌥 ☁️ 🌦 🌧 ⛈ 🌩 🌨 ❄️ ☃️ ⛄️ 🌬 💨 💧 💦 ☔️ ☂️ 🌊 🌫
 
 </body>
+</html>
 `
 
 const outPath = '/out/out.pdf'
@@ -30,8 +31,8 @@ async function main() {
     pipe: true,
     args: ['--no-sandbox'],
   })
-  console.log('Puppeteer launched successfully')
-  console.log(browser.version)
+  console.log('Puppeteer launched successfully:')
+  console.log(browser.version())
 
   const page = await browser.newPage()
   console.log('Sending HTML content to browser:')
@@ -42,7 +43,12 @@ async function main() {
   await page.pdf({
     path: outPath,
   })
-  console.log('Done.')
+  console.log('Done writing PDF.')
+
+  console.log('Shutting down Chrome...')
+  await page.close()
+  await browser.close()
+  console.log('Done shutting down Chrome')
 }
 
 main()

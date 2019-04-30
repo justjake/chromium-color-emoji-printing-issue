@@ -1,5 +1,7 @@
 This repo demonstrates a pathological case for Chrome's printing functionality.
 
+Bug report in Chromium: https://bugs.chromium.org/p/chromium/issues/detail?id=921585
+
 ## Testing with Puppeteer Chromium
 
 ```
